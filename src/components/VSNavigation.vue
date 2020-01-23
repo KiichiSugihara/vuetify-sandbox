@@ -71,9 +71,7 @@
       ><v-row class="d-flex justify-space-between">
         <v-row class="d-flex align-center">
           <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-          <v-toolbar-title>
-            <span>Google Contacts</span>
-          </v-toolbar-title>
+          <slot name="titleText"></slot>
         </v-row>
         <v-row class="d-flex justify-end">
           <v-btn icon>
@@ -91,7 +89,10 @@
 <script>
 export default {
   props: {
-    source: String
+    titileText: {
+      type: String,
+      default: "タイトル"
+    }
   },
   data: () => ({
     dialog: false,
