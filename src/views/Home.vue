@@ -1,11 +1,13 @@
 <template>
-  <div class="home">ホーム</div>
+  <v-app><Navigation></Navigation><v-content>ホーム</v-content></v-app>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import Navigation from "@/components/Navigation";
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    Navigation
+  }
 };
 </script>
