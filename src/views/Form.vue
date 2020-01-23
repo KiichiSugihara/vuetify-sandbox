@@ -4,7 +4,7 @@
       <template v-slot:titleText>
         <span>{{ title }}</span>
       </template></VSNavigation
-    ><v-content>ホーム</v-content></v-app
+    ><v-content>フォーム</v-content></v-app
   >
 </template>
 
