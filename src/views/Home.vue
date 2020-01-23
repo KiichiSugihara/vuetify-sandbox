@@ -1,13 +1,13 @@
 <template>
-  <v-app><Navigation></Navigation><v-content>ホーム</v-content></v-app>
+  <v-app><VSNavigation></VSNavigation><v-content>ホーム</v-content></v-app>
 </template>
 
 <script>
-import Navigation from "@/components/Navigation";
+import VSNavigation from "@/components/VSNavigation";
 export default {
   name: "Home",
   components: {
-    Navigation
+    VSNavigation
   }
 };
 </script>
