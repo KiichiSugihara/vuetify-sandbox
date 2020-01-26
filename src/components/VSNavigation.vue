@@ -91,9 +91,25 @@
               <v-icon>mdi-account</v-icon>
             </v-btn></router-link
           >
-          <v-btn icon>
-            <v-icon>mdi-logout</v-icon>
-          </v-btn>
+          <v-dialog v-model="dialog" max-width="290">
+            <template v-slot:activator="{ on }">
+              <v-btn v-on="on" icon>
+                <v-icon>mdi-logout</v-icon>
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title class="headline">ログアウト</v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn @click="dialog = false" color="green darken-1" text
+                  >キャンセル</v-btn
+                >
+                <v-btn @click="dialog = false" color="red darken-1" text
+                  >ログアウト</v-btn
+                >
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
         </v-row>
       </v-row>
     </v-app-bar>
