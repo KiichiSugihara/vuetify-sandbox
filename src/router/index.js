@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home";
 import Form from "@/views/Form";
+import User from "@/views/User";
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ const routes = [
     path: "/form",
     name: "form",
     component: Form
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: User
   }
 ];
 

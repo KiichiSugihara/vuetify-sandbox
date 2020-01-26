@@ -86,11 +86,13 @@
           <slot name="titleText"></slot>
         </v-row>
         <v-row class="d-flex justify-end">
+          <router-link :to="{ name: 'user' }"
+            ><v-btn icon>
+              <v-icon>mdi-account</v-icon>
+            </v-btn></router-link
+          >
           <v-btn icon>
-            <v-icon>mdi-apps</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>mdi-bell</v-icon>
+            <v-icon>mdi-logout</v-icon>
           </v-btn>
         </v-row>
       </v-row>
