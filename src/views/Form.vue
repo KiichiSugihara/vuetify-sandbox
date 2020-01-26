@@ -4,46 +4,53 @@
       <template v-slot:titleText>
         <span>{{ title }}</span>
       </template></VSNavigation
-    ><v-content class="ma-4">
-      <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field
-          v-model="name"
-          :counter="10"
-          :rules="nameRules"
-          label="Name"
-          required
-        ></v-text-field>
+    ><v-content class="backGroundColor">
+      <div class="pa-4  white">
+        <v-form ref="form" v-model="valid" lazy-validation>
+          <v-text-field
+            v-model="name"
+            :counter="10"
+            :rules="nameRules"
+            label="Name"
+            required
+          ></v-text-field>
 
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          label="E-mail"
-          required
-        ></v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
 
-        <v-select
-          v-model="select"
-          :items="selectItems"
-          :rules="selectRules"
-          label="Item"
-          required
-        ></v-select>
+          <v-select
+            v-model="select"
+            :items="selectItems"
+            :rules="selectRules"
+            label="Item"
+            required
+          ></v-select>
 
-        <v-checkbox
-          v-model="checkbox"
-          :rules="checkboxRules"
-          label="Do you agree?"
-          required
-        ></v-checkbox>
+          <v-checkbox
+            v-model="checkbox"
+            :rules="checkboxRules"
+            label="Do you agree?"
+            required
+          ></v-checkbox>
 
-        <v-btn :disabled="!valid" @click="submit" color="success" class="mr-4">
-          登録
-        </v-btn>
+          <v-btn
+            :disabled="!valid"
+            @click="submit"
+            color="success"
+            class="mr-4"
+          >
+            登録
+          </v-btn>
 
-        <v-btn @click="reset" color="error" class="mr-4">
-          クリア
-        </v-btn>
-      </v-form>
+          <v-btn @click="reset" color="error" class="mr-4">
+            クリア
+          </v-btn>
+        </v-form>
+      </div>
     </v-content></v-app
   >
 </template>
