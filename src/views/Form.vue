@@ -6,7 +6,15 @@
       </template></VSNavigation
     ><v-content class="backGroundColor">
       <div class="pa-4  white">
+        <v-progress-linear
+          :active="loading"
+          :indeterminate="loading"
+          absolute
+          top
+          color="green"
+        ></v-progress-linear>
         <v-form ref="form" v-model="valid" lazy-validation>
+          <!-- 文字数制限 -->
           <v-text-field
             v-model="name"
             :counter="10"
@@ -14,14 +22,14 @@
             label="Name"
             required
           ></v-text-field>
-
+          <!-- メールアドレス -->
           <v-text-field
             v-model="email"
             :rules="emailRules"
             label="E-mail"
             required
           ></v-text-field>
-
+          <!-- 選択フォーム -->
           <v-select
             v-model="select"
             :items="selectItems"
@@ -29,14 +37,13 @@
             label="Item"
             required
           ></v-select>
-
+          <!-- チェックボックス -->
           <v-checkbox
             v-model="checkbox"
             :rules="checkboxRules"
-            label="Do you agree?"
+            label="同意しましたか?"
             required
           ></v-checkbox>
-
           <v-btn
             :disabled="!valid"
             @click="submit"
@@ -65,6 +72,7 @@ export default {
   },
   data: () => ({
     title: "フォーム",
+    loading: false,
     valid: true,
     name: "",
     nameRules: [
@@ -99,10 +107,18 @@ export default {
       this.$refs.form.resetValidation();
     },
     async submit() {
+      this.loading = true;
+
       await this.validate();
       if (this.valid) {
-        router.push({ name: "home" });
+        await setTimeout(() => this.mockPush(), 1500);
+      } else {
+        this.loading = false;
       }
+    },
+    async mockPush() {
+      router.push({ name: "home" });
+      this.loading = false;
     }
   }
 };
