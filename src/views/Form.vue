@@ -6,6 +6,22 @@
       </template></VSNavigation
     ><v-content class="backGroundColor">
       <div class="pa-4  white">
+        <v-breadcrumbs :items="breadItems"
+          ><template v-slot:item="{ item }">
+            <router-link
+              v-if="item.disabled === false"
+              :to="{ name: item.link }"
+            >
+              <v-breadcrumbs-item :disabled="item.disabled">
+                {{ item.text.toUpperCase() }}
+              </v-breadcrumbs-item>
+            </router-link>
+
+            <v-breadcrumbs-item v-else :disabled="item.disabled">
+              {{ item.text.toUpperCase() }}
+            </v-breadcrumbs-item>
+          </template></v-breadcrumbs
+        >
         <v-progress-linear
           :active="loading"
           :indeterminate="loading"
@@ -72,6 +88,18 @@ export default {
   },
   data: () => ({
     title: "フォーム",
+    breadItems: [
+      {
+        text: "Home",
+        disabled: false,
+        link: "home"
+      },
+      {
+        text: "Form",
+        disabled: true,
+        link: "form"
+      }
+    ],
     loading: false,
     valid: true,
     name: "",
