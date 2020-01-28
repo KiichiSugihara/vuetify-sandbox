@@ -53,6 +53,13 @@
             label="Item"
             required
           ></v-select>
+          <v-autocomplete
+            :items="states"
+            :filter="customFilter"
+            color="white"
+            item-text="name"
+            label="State"
+          ></v-autocomplete>
           <!-- チェックボックス -->
           <v-checkbox
             v-model="checkbox"
@@ -100,6 +107,13 @@ export default {
         link: "form"
       }
     ],
+    states: [
+      { name: "Florida", abbr: "FL", id: 1 },
+      { name: "Georgia", abbr: "GA", id: 2 },
+      { name: "Nebraska", abbr: "NE", id: 3 },
+      { name: "California", abbr: "CA", id: 4 },
+      { name: "New York", abbr: "NY", id: 5 }
+    ],
     loading: false,
     valid: true,
     name: "",
@@ -133,6 +147,15 @@ export default {
     //バリデーションリセット
     resetValidation() {
       this.$refs.form.resetValidation();
+    },
+    customFilter(item, queryText) {
+      const textOne = item.name.toLowerCase();
+      const textTwo = item.abbr.toLowerCase();
+      const searchText = queryText.toLowerCase();
+
+      return (
+        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
+      );
     },
     async submit() {
       this.loading = true;
