@@ -104,7 +104,7 @@
                 <v-btn @click="dialog = false" color="green darken-1" text
                   >キャンセル</v-btn
                 >
-                <v-btn @click="dialog = false" color="red darken-1" text
+                <v-btn @click="logout" color="red darken-1" text
                   >ログアウト</v-btn
                 >
               </v-card-actions>
@@ -117,6 +117,7 @@
 >
 
 <script>
+import "@/router/index";
 export default {
   props: {
     titileText: {
@@ -135,7 +136,13 @@ export default {
         router: "form"
       }
     ]
-  })
+  }),
+  methods: {
+    logout() {
+      this.dialog = false;
+      this.$router.push({ name: "login" });
+    }
+  }
 };
 </script>
 
