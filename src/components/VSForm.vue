@@ -9,6 +9,25 @@
         color="green"
       ></v-progress-linear>
       <v-form ref="form" v-model="valid" lazy-validation>
+        <v-menu
+          v-model="menu"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <v-text-field
+              v-model="date"
+              v-on="on"
+              label="Picker without buttons"
+              prepend-icon="event"
+              readonly
+            ></v-text-field>
+          </template>
+          <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
+        </v-menu>
         <!-- 文字数制限 -->
         <v-text-field
           v-model="name"
@@ -62,6 +81,8 @@
 import router from "@/router/index";
 export default {
   data: () => ({
+    date: new Date().toISOString().substr(0, 10),
+    menu: false,
     states: [
       { name: "Florida", abbr: "FL", id: 1 },
       { name: "Georgia", abbr: "GA", id: 2 },
