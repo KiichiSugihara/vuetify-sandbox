@@ -21,6 +21,14 @@
           :headers="headers"
           :items="desserts"
           :search="search"
+          :footer-props="{
+            'items-per-page-options': [5, 10, 100, 200, -1],
+            showFirstLastPage: true,
+            firstIcon: 'mdi-arrow-collapse-left',
+            lastIcon: 'mdi-arrow-collapse-right',
+            prevIcon: 'mdi-minus',
+            nextIcon: 'mdi-plus'
+          }"
         ></v-data-table></div></v-content
   ></v-app>
 </template>
