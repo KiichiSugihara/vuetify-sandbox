@@ -28,28 +28,30 @@
           </template>
           <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
         </v-menu>
-        <v-menu
-          v-model="jpMenu"
-          :close-on-content-click="false"
-          :nudge-right="40"
-          transition="scale-transition"
-          offset-y
-          min-width="290px"
+        <v-dialog
+          ref="dialog"
+          v-model="jpModal"
+          :return-value.sync="jpDate"
+          persistent
+          width="290px"
         >
           <template v-slot:activator="{ on }">
             <v-text-field
               v-model="jpDate"
               v-on="on"
-              label="Picker without buttons"
+              label="Picker in dialog"
               prepend-icon="event"
               readonly
             ></v-text-field>
           </template>
-          <VSJPDatePicker
-            v-model="jpDate"
-            @input="jpMenu = false"
-          ></VSJPDatePicker>
-        </v-menu>
+          <VSJPDatePicker v-model="jpDate" scrollable>
+            <v-spacer></v-spacer>
+            <v-btn @click="jpModal = false" text color="primary">Cancel</v-btn>
+            <v-btn @click="$refs.dialog.save(jpDate)" text color="primary"
+              >OK</v-btn
+            >
+          </VSJPDatePicker>
+        </v-dialog>
         <!-- 文字数制限 -->
         <v-text-field
           v-model="name"
@@ -110,7 +112,7 @@ export default {
     date: new Date().toISOString().substr(0, 10),
     menu: false,
     jpDate: new Date().toISOString().substr(0, 10),
-    jpMenu: false,
+    jpModal: false,
     states: [
       { name: "Florida", abbr: "FL", id: 1 },
       { name: "Georgia", abbr: "GA", id: 2 },
