@@ -18,3 +18,12 @@
     width: fit-content;
   }
 }
+.v-select_selections{
+  min-width: 18px;
+}
+.v-data-footer {
+  &__select {
+    min-width: 320px;
+      flex: 0 0 auto;
+  }
+}
