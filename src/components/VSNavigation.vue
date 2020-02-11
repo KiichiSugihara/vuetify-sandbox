@@ -134,6 +134,11 @@ export default {
         icon: "mdi-file-document-box-check-outline",
         text: "form",
         router: "form"
+      },
+      {
+        icon: "mdi-file-table-box-outline",
+        text: "table",
+        router: "table"
       }
     ]
   }),

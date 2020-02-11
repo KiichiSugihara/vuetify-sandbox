@@ -4,6 +4,7 @@ import Home from "@/views/Home";
 import Form from "@/views/Form";
 import User from "@/views/User";
 import Login from "@/views/Login";
+import Table from "@/views/Table";
 
 Vue.use(VueRouter);
 
@@ -22,6 +23,11 @@ const routes = [
     path: "/user",
     name: "user",
     component: User
+  },
+  {
+    path: "/table",
+    name: "table",
+    component: Table
   },
   {
     path: "/login",
