@@ -26,7 +26,29 @@
               readonly
             ></v-text-field>
           </template>
-          <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
+          <v-date-picker v-model="date" @input="menu = false"></v-date-picker>
+        </v-menu>
+        <v-menu
+          v-model="jpMenu"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <v-text-field
+              v-model="jpDate"
+              v-on="on"
+              label="Picker without buttons"
+              prepend-icon="event"
+              readonly
+            ></v-text-field>
+          </template>
+          <VSJPDatePicker
+            v-model="jpDate"
+            @input="jpMenu = false"
+          ></VSJPDatePicker>
         </v-menu>
         <!-- 文字数制限 -->
         <v-text-field
@@ -79,10 +101,16 @@
 
 <script>
 import router from "@/router/index";
+import VSJPDatePicker from "@/components/VSJPDatePicker";
 export default {
+  components: {
+    VSJPDatePicker
+  },
   data: () => ({
     date: new Date().toISOString().substr(0, 10),
     menu: false,
+    jpDate: new Date().toISOString().substr(0, 10),
+    jpMenu: false,
     states: [
       { name: "Florida", abbr: "FL", id: 1 },
       { name: "Georgia", abbr: "GA", id: 2 },
