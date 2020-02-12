@@ -104,6 +104,12 @@
           item-text="name"
           label="State"
         ></v-autocomplete>
+        <v-text-field
+          v-model="filledText"
+          label="Filled"
+          filled
+          disabled
+        ></v-text-field>
         <!-- チェックボックス -->
         <v-checkbox
           v-model="checkbox"
@@ -159,6 +165,7 @@ export default {
     select: null,
     selectRules: [v => !!v || "Item is required"],
     selectItems: ["選択肢1", "選択肢2", "選択肢3", "選択肢4"],
+    filledText: "リードオンリー",
     checkbox: false,
     checkboxRules: [v => !!v || "確認してください"]
   }),
