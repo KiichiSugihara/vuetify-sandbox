@@ -52,6 +52,28 @@
             >
           </VSJPDatePicker>
         </v-dialog>
+        <v-menu
+          v-model="jpMenu"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <v-text-field
+              v-model="jpDate2"
+              v-on="on"
+              label="Picker without buttons"
+              prepend-icon="event"
+              readonly
+            ></v-text-field>
+          </template>
+          <VSJPDatePicker
+            v-model="jpDate2"
+            @change="jpMenu = false"
+          ></VSJPDatePicker>
+        </v-menu>
         <!-- 文字数制限 -->
         <v-text-field
           v-model="name"
@@ -113,6 +135,8 @@ export default {
     menu: false,
     jpDate: new Date().toISOString().substr(0, 10),
     jpModal: false,
+    jpDate2: new Date().toISOString().substr(0, 10),
+    jpMenu: false,
     states: [
       { name: "Florida", abbr: "FL", id: 1 },
       { name: "Georgia", abbr: "GA", id: 2 },
