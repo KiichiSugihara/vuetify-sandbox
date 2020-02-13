@@ -40,15 +40,13 @@ export default {
   },
   data: () => ({
     title: "ユーザー",
-    loading: false,
+    loading: true,
     errored: false,
     error: null,
     userItem: {}
   }),
   async created() {
-    this.loading = true;
     await this.getItems();
-    this.loading = false;
   },
   methods: {
     getItems() {
@@ -59,7 +57,7 @@ export default {
         })
         .catch(err => {
           (this.errored = true), (this.error = err);
-        });
+        }).finally(() => this.loading = false);
     }
   }
 };
