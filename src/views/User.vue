@@ -50,8 +50,12 @@ export default {
   },
   methods: {
     getItems() {
+      axios.defaults.baseURL = process.env.VUE_APP_API_USER_ENDPOINT
+      if(process.env.VUE_APP_API_USER_ENDPOINT){
+        axios.defaults.baseURL ='https://randomuser.me/api'
+      }
       axios
-        .get("https://randomuser.me/api")
+        .get("/")
         .then(response => {
           this.userItem = response.data.results[0];
         })
