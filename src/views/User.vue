@@ -50,9 +50,9 @@ export default {
   },
   methods: {
     getItems() {
-      axios.defaults.baseURL = process.env.VUE_APP_API_USER_ENDPOINT
-      if(process.env.VUE_APP_API_USER_ENDPOINT){
-        axios.defaults.baseURL ='https://randomuser.me/api'
+      axios.defaults.baseURL = process.env.VUE_APP_API_USER_ENDPOINT;
+      if (process.env.VUE_APP_API_USER_ENDPOINT) {
+        axios.defaults.baseURL = "https://randomuser.me/api";
       }
       axios
         .get("/")
@@ -61,7 +61,8 @@ export default {
         })
         .catch(err => {
           (this.errored = true), (this.error = err);
-        }).finally(() => this.loading = false);
+        })
+        .finally(() => (this.loading = false));
     }
   }
 };

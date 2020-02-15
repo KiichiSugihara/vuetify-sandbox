@@ -88,8 +88,8 @@
               v-on="on"
               label="和暦表示"
               prepend-icon="event"
-               readonly
-               filled
+              readonly
+              filled
             ></v-text-field>
           </template>
           <VSJPDatePicker
@@ -166,7 +166,7 @@ export default {
     jpModal: false,
     jpDate2: new Date().toISOString().substr(0, 10),
     jpMenu: false,
-    gengoDate:new Date().toISOString().substr(0, 10),
+    gengoDate: new Date().toISOString().substr(0, 10),
     jpGengoMenu: false,
     states: [
       { name: "Florida", abbr: "FL", id: 1 },
@@ -195,14 +195,14 @@ export default {
     checkboxRules: [v => !!v || "確認してください"]
   }),
   computed: {
-    getGengoDate(){
+    getGengoDate() {
       // yyyy-mm-dd → 年号月日
-      const year = this.gengoDate.slice(0,4)
-      const month = this.gengoDate.slice(5,7)
-      const day =  this.gengoDate.slice(8,10)
-      const dateText= this.yearWareki(year) + month + '月'+ day + '日';
-      return dateText
-      }
+      const year = this.gengoDate.slice(0, 4);
+      const month = this.gengoDate.slice(5, 7);
+      const day = this.gengoDate.slice(8, 10);
+      const dateText = this.yearWareki(year) + month + "月" + day + "日";
+      return dateText;
+    }
   },
   methods: {
     // validation実行
@@ -211,27 +211,27 @@ export default {
         this.snackbar = true;
       }
     },
-      yearWareki(year){
-      let wYear = ''
-      let gen = ''
-      if(year > 2018){
-        wYear = year-2018
-        gen = '令和'
-      }else if(year > 1988){
-        wYear= year-1988
-        gen = '平成'
-      }else if(year > 1925){
-        wYear = year-1925
-        gen = '昭和'
-      }else if(year > 1911){
-        wYear = year-1911
-        gen = '大正'
-      }else if(year > 1867){
-        wYear = year-1867
-        gen = '明治'
+    yearWareki(year) {
+      let wYear = "";
+      let gen = "";
+      if (year > 2018) {
+        wYear = year - 2018;
+        gen = "令和";
+      } else if (year > 1988) {
+        wYear = year - 1988;
+        gen = "平成";
+      } else if (year > 1925) {
+        wYear = year - 1925;
+        gen = "昭和";
+      } else if (year > 1911) {
+        wYear = year - 1911;
+        gen = "大正";
+      } else if (year > 1867) {
+        wYear = year - 1867;
+        gen = "明治";
       }
-      if(wYear === 1) wYear = '元'
-      return gen !== '' ? gen + wYear + '年' : false
+      if (wYear === 1) wYear = "元";
+      return gen !== "" ? gen + wYear + "年" : false;
     },
     // フォームのリセット
     reset() {
@@ -265,5 +265,5 @@ export default {
       this.loading = false;
     }
   }
-}
+};
 </script>
