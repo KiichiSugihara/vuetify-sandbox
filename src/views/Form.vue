@@ -21,7 +21,7 @@
               {{ item.text.toUpperCase() }}
             </v-breadcrumbs-item>
           </template></v-breadcrumbs
-        ><VSForm></VSForm>
+        ><VSForm @formItem="submitForm"></VSForm>
       </div> </v-content
   ></v-app>
 </template>
@@ -37,6 +37,7 @@ export default {
   },
   data: () => ({
     title: "フォーム",
+    formItem: null,
     breadItems: [
       {
         text: "Home",
@@ -49,6 +50,11 @@ export default {
         link: "form"
       }
     ]
-  })
+  }),
+  methods: {
+    submitForm(value) {
+      this.formItem = value;
+    }
+  }
 };
 </script>

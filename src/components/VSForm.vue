@@ -153,13 +153,14 @@
 </template>
 
 <script>
-import router from "@/router/index";
+// f
 import VSJPDatePicker from "@/components/VSJPDatePicker";
 export default {
   components: {
     VSJPDatePicker
   },
   data: () => ({
+    formItem: null,
     date: new Date().toISOString().substr(0, 10),
     menu: false,
     jpDate: new Date().toISOString().substr(0, 10),
@@ -250,9 +251,11 @@ export default {
         textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
       );
     },
+    setFormItem() {
+      this.formItem = { email: this.email };
+    },
     async submit() {
       this.loading = true;
-
       await this.validate();
       if (this.valid) {
         await setTimeout(() => this.mockPush(), 1500);
@@ -261,7 +264,9 @@ export default {
       }
     },
     async mockPush() {
-      router.push({ name: "home" });
+      await this.setFormItem();
+      await this.$emit("formItem", this.formItem);
+      // router.push({ name: "home" });
       this.loading = false;
     }
   }
