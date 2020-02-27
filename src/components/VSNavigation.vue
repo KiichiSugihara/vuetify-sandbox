@@ -139,6 +139,11 @@ export default {
         icon: "mdi-file-table-box-outline",
         text: "table",
         router: "table"
+      },
+      {
+        icon: "mdi-reload",
+        text: "loading",
+        router: "loading"
       }
     ]
   }),

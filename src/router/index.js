@@ -5,6 +5,7 @@ import Form from "@/views/Form";
 import User from "@/views/User";
 import Login from "@/views/Login";
 import Table from "@/views/Table";
+import Loading from "@/views/Loading";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login
+  },
+  {
+    path: "/loading",
+    name: "loading",
+    component: Loading
   }
 ];
 
