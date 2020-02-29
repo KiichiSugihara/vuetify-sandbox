@@ -7,8 +7,14 @@ jobs:
     working_directory: ~/vuetify-sandbox # 作業フォルダ
 
     steps:
-      - checkout # プロジェクトに追加したGitHubリポジトリをworking_directoryにcloneしてcheckout
-
+     # グローバルインストール
+      - run:
+          name: Install global
+          command: npm install -g @vue/cli
+      # グローバルインストール
+      - run:
+          name: Install global
+          command: npm install -g pm2
       # 依存関係のインストール
       - run:
           name: Install dependencies # CircleCI上で表示される処理名(任意)
@@ -21,5 +27,5 @@ jobs:
 
       # ビルドの確認
       - run:
-          name: Check dist
-          command: ls -la dist
+          name: run pm2
+          command: pm2 serve --spa dist 5000
