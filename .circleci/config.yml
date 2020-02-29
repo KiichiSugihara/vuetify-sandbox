@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: node:12.14.0 # nodeのバージョンは開発環境に合わせる
+    working_directory: ~/vuetify-sandbox
     steps:
      # グローバルインストール
       - run:
