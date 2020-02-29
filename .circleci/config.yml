@@ -29,6 +29,14 @@ jobs:
       - run:
           name: Install dependencies
           command: npm install
+           # グローバルインストール
+      - run:
+          name: Install global
+          command: npm install -g @vue/cli
+      # グローバルインストール
+      - run:
+          name: Install global
+          command: npm install -g pm2
       - save_npm
 
   lint:
@@ -77,3 +85,6 @@ workflows:
       - test:
           requires:
             - build
+      - run:
+          name: run pm2
+          command: pm2 serve --spa dist 5000
