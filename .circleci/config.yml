@@ -22,6 +22,11 @@ jobs:
           name: Build
           command: npm run  build
 
+      #ls
+      - run:
+          name: Check dist
+          command: ls
+
       # ビルドの確認
       - run:
           name: run pm2
