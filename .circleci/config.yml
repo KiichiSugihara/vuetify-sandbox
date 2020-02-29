@@ -61,15 +61,15 @@ jobs:
           command: npm run build
       - save_npm
 
-  test:
+  start:
     executor:
       name: default
     steps:
       - checkout
       - restore_npm
       - run:
-          name: Test
-          command: npm run test:unit
+          name: run pm2
+          command: pm2 serve --spa dist 5000
       - save_npm
 
 workflows:
@@ -82,9 +82,6 @@ workflows:
       - build:
           requires:
             - lint
-      - test:
+      - start:
           requires:
             - build
-      - run:
-          name: run pm2
-          command: pm2 serve --spa dist 5000
