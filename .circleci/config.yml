@@ -1,34 +1,79 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+executors:
+  default:
+    working_directory: ~/workspace
     docker:
-      - image: node:12.14.0 # nodeのバージョンは開発環境に合わせる
-    working_directory: ~/vuetify-sandbox
+      - image: node:12
+
+commands:
+  restore_npm:
     steps:
-     # グローバルインストール
+      - restore_cache:
+          name: Restore npm dependencies
+          key: npm-{{ checksum "package.json" }}
+
+  save_npm:
+    steps:
+      - save_cache:
+          name: Cache npm dependencies
+          key: npm-{{ checksum "package.json" }}
+          paths:
+            - ~/workspace/node_modules
+
+jobs:
+  setup:
+    executor:
+      name: default
+    steps:
+      - checkout
       - run:
-          name: Install global
-          command: npm install -g @vue/cli
-      # グローバルインストール
+          name: Install dependencies
+          command: npm install
+      - save_npm
+
+  lint:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - restore_npm
       - run:
-          name: Install global
-          command: npm install -g pm2
-      # 依存関係のインストール
-      - run:
-          name: Install dependencies # CircleCI上で表示される処理名(任意)
-          command: npm install # 処理コマンド
-      #ls
-      - run:
-          name: Check dist
-          command: ls
-      # ビルド
+          name: Lint
+          command: npm run lint
+      - save_npm
+
+  build:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - restore_npm
       - run:
           name: Build
-          command: npm run  build
+          command: npm run build
+      - save_npm
 
-
-
-      # ビルドの確認
+  test:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - restore_npm
       - run:
-          name: run pm2
-          command: pm2 serve --spa dist 5000
+          name: Test
+          command: npm run test:unit
+      - save_npm
+
+workflows:
+  pull-request:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - build:
+          requires:
+            - lint
+      - test:
+          requires:
+            - build
