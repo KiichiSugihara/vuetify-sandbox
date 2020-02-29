@@ -16,16 +16,16 @@ jobs:
       - run:
           name: Install dependencies # CircleCI上で表示される処理名(任意)
           command: npm install # 処理コマンド
-
+      #ls
+      - run:
+          name: Check dist
+          command: ls
       # ビルド
       - run:
           name: Build
           command: npm run  build
 
-      #ls
-      - run:
-          name: Check dist
-          command: ls
+
 
       # ビルドの確認
       - run:
