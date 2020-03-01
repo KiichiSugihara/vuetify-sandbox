@@ -140,13 +140,44 @@
           label="同意しましたか?"
           required
         ></v-checkbox>
-        <v-btn :disabled="!valid" @click="submit" color="success" class="mr-4">
-          登録
-        </v-btn>
+        <v-row>
+          <v-btn
+            :disabled="!valid"
+            @click="submit"
+            color="success"
+            class="mr-4"
+          >
+            登録
+          </v-btn>
 
-        <v-btn @click="reset" color="error" class="mr-4">
-          クリア
-        </v-btn>
+          <v-btn @click="reset" color="error" class="mr-4">
+            クリア
+          </v-btn>
+          <v-btn
+            @click="snackBarItem.snackbar = true"
+            color="error"
+            class="mr-4"
+          >
+            Show Snackbar
+          </v-btn></v-row
+        >
+
+        <v-snackbar
+          v-model="snackBarItem.snackbar"
+          :bottom="snackBarItem.y === 'bottom'"
+          :color="snackBarItem.color"
+          :left="snackBarItem.x === 'left'"
+          :multi-line="snackBarItem.mode === 'multi-line'"
+          :right="snackBarItem.x === 'right'"
+          :timeout="snackBarItem.timeout"
+          :top="snackBarItem.y === 'top'"
+          :vertical="snackBarItem.mode === 'vertical'"
+        >
+          {{ snackBarItem.text }}
+          <v-btn @click="snackBarItem.snackbar = false" text>
+            Close
+          </v-btn>
+        </v-snackbar>
       </v-form>
     </v-content>
   </div>
@@ -193,7 +224,16 @@ export default {
     selectItems: ["選択肢1", "選択肢2", "選択肢3", "選択肢4"],
     filledText: "リードオンリー",
     checkbox: false,
-    checkboxRules: [v => !!v || "確認してください"]
+    checkboxRules: [v => !!v || "確認してください"],
+    snackBarItem: {
+      color: "error",
+      mode: "",
+      snackbar: false,
+      text: "エラーメッセージ",
+      timeout: 5000,
+      x: null,
+      y: "top"
+    }
   }),
   computed: {
     getGengoDate() {
