@@ -45,6 +45,7 @@
 <script>
 export default {
   props: {
+    /* eslint-disable */
     allowedDates: Function,
     color: String,
     dark: Boolean,
@@ -58,7 +59,11 @@ export default {
     landscape: Boolean,
     light: Boolean,
     max: String,
-    min: String,
+    min: {
+      type: String,
+      // 元号の明治時代まで
+      default: "1868-01-01"
+    },
     multiple: Boolean,
     nextIcon: String,
     noTitle: Boolean,
@@ -78,6 +83,7 @@ export default {
     value: [String, Array, Object],
     width: [Number, String],
     yearIcon: String
+    /* eslint-disable */
   },
   data: () => {
     const now = new Date();
