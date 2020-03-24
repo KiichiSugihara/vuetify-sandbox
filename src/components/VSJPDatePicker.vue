@@ -28,7 +28,7 @@
     :selectedItemsText="selectedItemsText"
     :showCurrent="pickerShowCurrent"
     :showWeek="showWeek"
-    :titleDateFormat="jpvTitleDateFormat"
+    :title-date-format="jpvTitleDateFormat"
     :type="jpvType"
     :value="jpvValue"
     :width="width"
@@ -296,11 +296,12 @@ export default {
     },
     //ヘッダーの選択データを表示する部分
     jpvTitleDateFormat(str) {
-      // realYM → YYYY-MM
+      // realYM → YYYY-MM-DD
       if (!str) return "";
-      return this.multiple || this.range
-        ? String(this.inputValue.length) + " selected"
-        : this.inputValue;
+      return str.slice(0, 10);
+      // return this.multiple || this.range
+      //   ? String(this.inputValue.length) + " selected"
+      //   : this.inputValue;
     },
     //月選択ボタン上部のYYYYを変換するfunction
     jpvHeaderDateFormat(str) {
