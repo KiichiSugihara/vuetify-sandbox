@@ -2,6 +2,9 @@
   "name": "vuetify-sandbox",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=12.18.0"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve-dev": "vue-cli-service serve --mode development",
