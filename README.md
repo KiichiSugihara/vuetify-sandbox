@@ -1,5 +1,10 @@
 # vuetify-sandbox
 
+### Run Docker for development
+```
+docker-compose up --build
+```
+
 ## Project setup
 ```
 npm install
