@@ -131,7 +131,7 @@ export default {
     items: [
       { icon: "mdi-home", text: "home", router: "home" },
       {
-        icon: "mdi-file-document-box-check-outline",
+        icon: "mdi-text-box",
         text: "form",
         router: "form"
       },
